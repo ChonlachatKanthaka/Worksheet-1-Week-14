@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Im Aroi Restaurant</title>
+
+    <style>
+
+        h2,h4,h5 {
+            text-align: center;
+        }
+
+        /* ================= จัดการกล่องใหญ่ ให้แบ่งเป็น 4 คอลัมน์เท่าๆ กัน ================= */
+        .product-section {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* แบ่งเป็น 4 ช่อง */
+        gap: 18px; /* ระยะห่างระหว่างกล่องสินค้า */
+        text-align: center;
+        }
+
+        /* ================= ตกแต่งการ์ดสินค้าแต่ละชิ้น ================= */
+        .product-card {
+        border: 5px solid #a27a01; /* เส้นกรอบรอบสินค้า */
+        padding: 10px;
+        background-color: #ffeeba;
+        }
+
+        /* ================= ปรับรูปภาพให้อยู่ในกรอบอย่างสวยงาม ================= */
+        .product-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        }
+
+        /* =============== Banner =============== */
+
+        .banner {
+            text-align: center;
+        }
+
+        .banner img {
+            width: 800px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* =============== Header =============== */
+
+        header {
+            background-color: #d8b751;
+            color: #62552e;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        /* =============== Navigation =============== */
+
+        /* ================= จัดรูปแบบเมนู ================= */
+        nav {
+            background-color: #fcdb7b;
+            /* สีพื้นหลังเมนู */
+            text-align: right;
+            /* จัดเมนูไปทางขวา */
+            padding: 15px 30px;
+            /* บน-ล่าง 15px ซ้าย-ขวา 30px */
+        }
+
+        /* ================= จัดรูปแบบลิงก์ในเมนู ================= */
+        nav a {
+            color: #4b4226;
+            /* สีตัวอักษร */
+            text-decoration: none;
+            /* เอาเส้นใต้ลิงก์ออก */
+            margin-left: 20px;
+            /* ระยะห่างระหว่างเมนู */
+            font-weight: bold;
+            /* ตัวหนา */
+        }
+
+        /* ================= เมื่อเอาเมาส์ไปวางบนเมนู ================= */
+        nav a:hover {
+            color: #fefefe;
+            /* เปลี่ยนเป็นสีเหลือง */
+        }
+
+        /* ================= Price Table ================= */
+
+        table {
+        width: 60%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        text-align: center;
+        }
+
+        table th {
+            background-color: #ab8923;
+            color: rgb(0, 0, 0);
+            padding: 12px;
+        }
+
+        table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffefbe;
+        }
+
+        table tr:hover {
+            background-color: #ffdd79;
+        }
+
+        /* ================= Contact ================= */
+
+        .contact {
+            padding: 20px 30px;
+            background-color: #fcf6e3;
+        }
+
+        .contact h2 {
+            color: #b3912a;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            margin: 8px 0;
+            color: #cda734;
+        }
+
+        /* ================= Footer ================= */
+
+        footer {
+            background-color: #443404;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* ================ Product ================ */
+
+        /* กล่องสำหรับแสดงสินค้า */
+        .product-container {
+        display: flex;
+        justify-content: center;
+        /* จัดสินค้าให้อยู่ตรงกลาง */
+        margin: 30px 0;
+        }
+
+        /* กล่องสินค้า */
+        .product-card {
+        width: 350px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        background-color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* รูปสินค้า */
+        .product-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 8px;
+        }
+
+        /* ชื่อสินค้า */
+        .product-card h3 {
+        color: #1e3a5f;
+        margin: 15px 0 10px;
+        }
+
+        /* คำอธิบายสินค้า */
+        .product-card p {
+        color: #475569;
+        line-height: 1.6;
+        }
+
+        /* ราคาสินค้า */
+        .product-price {
+        color: #e11d48;
+        font-size: 22px;
+        font-weight: bold;
+        margin: 15px 0;
+        }
+
+        /* ปุ่มรายละเอียด */
+        .product-button {
+        display: inline-block;
+        background-color: #2563eb;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        }
+
+        /* เมื่อเอาเมาส์ไปวางบนปุ่ม */
+        .product-button:hover {
+        background-color: #1e3a5f;
+        }
+    </style>
+
+
+</head>
+
+
+
+<body style="background-color: #ffefd1;">
+  <!--===Header===-->
+    <header>
+        <h1>Im Aroi Restaurant</h1>
+        <hr>
+    </header>  
+<!--===Navigation===-->
+    <nav>
+        <a href="Im_Aroi_Restaurant.html">หน้าแรก</a> 
+        <a href="#">รายการอาหารและเครื่องดื่ม</a> 
+        <a href="#">โปรโมชั่น</a>
+        <a href="#">เกี่ยวกับเรา</a>
+        <a href="#">ติดต่อเรา</a>
+    </nav>
+    <hr>
+
+<!--===Banner===-->
+
+    <section>
+        <h2>Banner</h2>
+        <img src="c:\Users\Acer\OneDrive\ชลชาติ\images\Cute & Cozy.png" alt="Banner" width="1000" height="250" style="display: block; margin: 0 auto;">
+    </section>
+    <hr>
+
+<!--===About===-->
+    <section>
+        <h2>เกี่ยวกับร้าน</h2>
+        <p style="text-align: center;">
+            ร้าน Im Aroi Restaurant จัดจำหน่ายอาหารและเครื่องดื่มคุณภาพดี
+        </p>
+        <p style="text-align: center;">
+            รสชาติอร่อย สดใหม่ทุกวัน และมีโปรโมชั่นพิเศษมากมายให้ลูกค้าได้เลือกสรร
+        </p>
+    </section>
+    <hr>
+
+<!--===Product===-->
+    <section>
+        <h2> อาหารและเครื่องดื่มแนะนำ</h2>
+        <hr>
+
+<!--===อาหารคาว===-->
+        <h3>สินค้าแนะนำ</h3>
+
+    <section class="product-section">
+
+        <!--=== กล่องสินค้าชิ้นที่ 1 ===-->
+        <div class="product-card">
+            <img src="c:\Users\Acer\OneDrive\ชลชาติ\images\001\1.png" alt="สเต็กเนื้อ">
+            <h3>สเต็กเนื้อ</h3>
+            <a href="Product.1.html" class="product-button">ดูรายละเอียดสินค้า</a>
+        </div>
+
+        <!--=== กล่องสินค้าชิ้นที่ 2 ===-->
+        <div class="product-card">
+            <img src="c:\Users\Acer\OneDrive\ชลชาติ\images\001\4.png" alt="พิซซ่าชีส">
+            <h3>พิซซ่าชีส</h3>
+            <a href="Product.2.html" class="product-button">ดูรายละเอียดสินค้า</a>
+        </div>
+
+        <!--=== กล่องสินค้าชิ้นที่ 3 ===-->
+        <div class="product-card">
+            <img src="c:\Users\Acer\OneDrive\ชลชาติ\images\001\6.png" alt="เบอร์เกอร์">
+            <h3>เบอร์เกอร์</h3>
+            <a href="Product.3.html" class="product-button">ดูรายละเอียดสินค้า</a>
+        </div>
+
+        <!--=== กล่องสินค้าชิ้นที่ 4 ===-->
+        <div class="product-card">
+            <img src="c:\Users\Acer\OneDrive\ชลชาติ\images\001\2.png" alt="คัพเค้กส้ม">
+            <h3>คัพเค้กส้ม</h3>
+            <a href="Product.4.html" class="product-button">ดูรายละเอียดสินค้า</a>
+        </div>
+
+        <!--=== กล่องสินค้าชิ้นที่ 5 แถวที่สอง ===-->
+        <div class="product-card">
+            <img src="c:\Users\Acer\OneDrive\ชลชาติ\images\001\7.png" alt="กาแฟสด">
+            <h3>เค้กสตอเบอร์รี่</h3>
+            <a href="Product.5.html" class="product-button">ดูรายละเอียดสินค้า</a>
+        </div>
+
+        <!--=== กล่องสินค้าชิ้นที่ 6 แถวที่สอง ===-->
+        <div class="product-card">
+            <img src="c:\Users\Acer\OneDrive\ชลชาติ\images\001\8.png" alt="กาแฟสด">
+            <h3>เค้กช็อกโกแลต</h3>
+            <a href="Product.6.html" class="product-button">ดูรายละเอียดสินค้า</a>
+        </div>
+
+        <!--=== กล่องสินค้าชิ้นที่ 7 แถวที่สอง ===-->
+        <div class="product-card">
+            <img src="c:\Users\Acer\OneDrive\ชลชาติ\images\001\3.png" alt="มิลล์เชค">
+            <h3>มิลล์เชค</h3>
+            <a href="Product.7.html" class="product-button">ดูรายละเอียดสินค้า</a>
+        </div>
+
+        <!--=== กล่องสินค้าชิ้นที่ 8 แถวที่สอง ===-->
+        <div class="product-card">
+            <img src="c:\Users\Acer\OneDrive\ชลชาติ\images\001\9.png" alt="กาแฟสด">
+            <h3>ชานมไข่มุก</h3>
+            <a href="Product.8.html" class="product-button">ดูรายละเอียดสินค้า</a>
+        </div>
+
+        <!--=== กล่องสินค้าชิ้นที่ 9 แถวที่สอง ===-->
+        <div class="product-card">
+            <img src="c:\Users\Acer\OneDrive\ชลชาติ\images\001\5.png" alt="กาแฟสด">
+            <h3>กาแฟสด</h3>
+            <a href="Product.9.html" class="product-button">ดูรายละเอียดสินค้า</a>
+        </div>
+
+        </div>
+
+    </section>
+   
+    <hr>
+
+<!--===Price Table===-->
+    <section>
+        <h2>ตารางรายการสินค้า</h2>
+        <table border="1">
+            <tr>
+                <th>รหัสอาหารและเครื่องดื่ม</th>
+                <th>ชื่ออาหารและเครื่องดื่ม</th>
+                <th>ราคา</th>
+            </tr>
+
+            <tr>
+                <td>P001</td>
+                <td>สเต็กเนื้อ</td>
+                <td>359 บาท</td>
+            </tr>
+
+            <tr>
+                <td>P002</td>
+                <td>มิลค์เชค</td>
+                <td>59 บาท</td>
+            </tr>
+
+            <tr>
+                <td>P003</td>
+                <td>คัพเค้กส้ม</td>
+                <td>29 บาท</td>
+            </tr>
+
+            <tr>
+                <td>P004</td>
+                <td>พิซซ่าชีส</td>
+                <td>79 บาท</td>
+            </tr>
+
+            <tr>
+                <td>P005</td>
+                <td>กาแฟสด</td>
+                <td>25 บาท</td>
+            </tr>
+        </table>
+    </section>
+    <hr>
+
+<!--===Contact===-->
+    <section class="contact">
+        <h2>ติดต่อเรา</h2>
+        <p>โทรศัพท์: 020-xxx-xxxx</p>
+        <p>อีเมล: ImAroiRestaurant@gmail.com</p>
+        <p>Facebook: Im Aroi Restaurant</p>
+    </section>
+
+<!--===Footer===-->
+    <footer>
+        <p>Copyright © 2026 Im Aroi Restaurant.</p>
+    </footer>
+</body>
+</html>
+
